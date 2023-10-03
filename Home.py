@@ -4,8 +4,6 @@ import numpy as np
 from PIL import Image
 import os
 
-from functionality import Function
-
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 st.title('CEBRA')
