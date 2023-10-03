@@ -8,7 +8,9 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 st.title('CEBRA')
 
-image = Image.open('images\\cebra_logo.jpg')
+sep = os.sep
+PATH_IMAGE = "images" + sep + "cebra_logo.jpg"
+image = Image.open('images/cebra_logo.jpg')
 st.image(image, width = 100)
 
 
