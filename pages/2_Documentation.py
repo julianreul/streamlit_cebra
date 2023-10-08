@@ -4,6 +4,13 @@ import numpy as np
 
 st.title('Documentation MO|DE.behave')
 
+add_text = st.sidebar.text(
+    "OCEBRA - Data-driven analyses\
+    \nJulian Reul\
+    \nE-Mail: j.reul@ocebra.de\
+    "
+    )
+
 st.markdown("___")
 
 st.header("Discrete Choice Modelling")
@@ -45,6 +52,7 @@ st.markdown(
           
     Further reading:
 
+    * Reul et al. (2023): "MODE.behave: A Python Package for Discrete Choice Modeling", in Journal of Open Source Software, 8(88), 5265, https://doi.org/10.21105/joss.05265
     * Train, K. (2009): "Mixed logit", in Discrete choice methods with simulation (pp. 76–93), Cambridge University Press
     * Train, K. (2008): "EM algorithms for nonparametric estimation of mixing distributions", in Journal of Choice Modelling, 1(1), 40–69, https://doi.org/10.1016/S1755-5345(13)70022-8
     * Train, K. (2016): "Mixed logit with a flexible mixing distribution", in Journal of Choice Modelling, 19, 40–53, https://doi.org/10.1016/j.jocm.2016.07.004

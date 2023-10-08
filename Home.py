@@ -4,43 +4,50 @@ import numpy as np
 from PIL import Image
 import os
 
+from functionality import Function 
+
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-st.title('CEBRA')
-
 sep = os.sep
-PATH_IMAGE = "images" + sep + "cebra_logo.jpg"
-image = Image.open('images/cebra_logo.jpg')
-st.image(image, width = 100)
-
+PATH_IMAGE = "images" + sep + "logo_orange_cebra.png"
+image = Image.open(PATH_IMAGE)
+st.image(image, width = 300)
 
 add_text = st.sidebar.text(
-    "CEBRA GbR\
+    "OCEBRA - Data-driven analyses\
     \nJulian Reul\
-    \nE-Mail: julian.reul@rwth-aachen.de\
+    \nE-Mail: j.reul@ocebra.de\
     "
     )
 
-st.markdown("MO|DE.behave is an open-source Python package for discrete choice modeling.")
+st.markdown("OCEBRA is a data-consultancy based in Cologne and with roots at the Forschungszentrum Jülich.")
    
 st.markdown("""
-    Discrete choice theory is used for the analysis
-    of individual and aggregate choice behavior.
-    Mixed logit models are a special type of discrete choice model,
-    which enable the identification of preference or consumer groups
-    in an observed base population.
-    Discrete choice models use survey data of
-    observed or stated choice as an input.
+    We offer data analytics with a focus on interpretable neural networks and web-based data visualizations.
     """)
     
 st.markdown("""
-    You can upload your survey data according to the described format  
-    within the documentation-section to derive and analyse  
-    choice preferences within the observed base population.
+    At the core of our analysis, we employ the open-source model MO|DE.behave, which was recently developed at the Institute for Energy and Climate Research - Techno-economic Systems Analysis (IEK-3) at the Forschungszentrum Jülich.
+	This model originally stems from the field of behavioral modeling to explore the choice behavior of individuals and groups. 
+	The model's unique feature is that it retains the interpretability of its underlying neural-network structure.
+	Conventional neural networks remain uninterpretable black-boxes due to their inherent complexity. 
+	This makes them great algorithms for applications such as image- or voice-recognition, but limits their capability of delivering insights into the how and why data-inputs and -outputs are causally linked.
     """)
     
+st.markdown("""
+    MO|DE.behave is a general data analytics tool, which can be applied to any field of analysis, with roots in behavioral analyses.
+    Typical applications include the analysis of survey data to derive behavioral preferences of individuals or groups.\n
+    OCEBRA's services are a great fit, if you plan to conduct a survey and you are now looking for a partner conducting science-based data analytics to gain deeper insights.
+            """)
+
+st.markdown("""---""")
+
+st.markdown("Gain FIRST INSIGHTS already ONLINE:")
+
 #uploading data from local directory
 uploaded_file = st.file_uploader("Upload your survey data as .csv-files", help="Have a look at the -Documentation- page for information on the correct data-format.")
+
+st.markdown("HINT: Have a look at our documentation page for preparing your survey data in the right way.")
 
 st.markdown("___")
 
