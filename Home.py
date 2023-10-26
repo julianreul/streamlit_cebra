@@ -20,14 +20,14 @@ add_text = st.sidebar.text(
     "
     )
 
-st.markdown("OCEBRA is a Cologne-based consultancy firm specializing in the nuanced realm of choice preferences analysis.")
+st.markdown("OCEBRA is a Cologne-based consulting firm specializing in the realm of choice preference analysis.")
       
 st.markdown("""
-    At the core of our analysis, we employ the open-source model MO|DE.behave, which was recently developed at the Institute of Energy and Climate Research - Techno-economic Systems Analysis (IEK-3) at the Forschungszentrum Jülich.
+    The core of our analysis is the open-source model MO|DE.behave, which was recently developed at the Institute of Energy and Climate Research - Techno-economic Systems Analysis (IEK-3) at the Forschungszentrum Jülich.
     """)
     
 st.markdown("""
-    MO|DE.behave was originally developed in the context of behavioral analyses in transportation research. It uses survey data as an input to estimate and simulate choice models and can be applied to a variety of research fields. The model is unique as it enables the estimation of nonparametric mixed logit (MXL) models. These MXL models allow the analysis of heterogenous choice preferences across the surveyed base population, which facilitates the isolation of separate consumer or choice groups.
+    MO|DE.behave was originally developed in the context of behavioral analyses in transportation research. It uses survey data as an input to estimate and simulate choice models and can be applied to a variety of research fields. The model is unique in that it enables the estimation of nonparametric mixed logit (MXL) models. These MXL models allow the analysis of heterogeneous choice preferences across the surveyed base population, which facilitates the isolation of separate consumer or choice groups.
             """)
             
 st.markdown("""
