@@ -20,29 +20,23 @@ add_text = st.sidebar.text(
     "
     )
 
-st.markdown("OCEBRA is a data-consultancy based in Cologne and with roots at the Forschungszentrum Jülich.")
-   
+st.markdown("OCEBRA is a Cologne-based consultancy firm specializing in the nuanced realm of choice preferences analysis.")
+      
 st.markdown("""
-    We offer data analytics with a focus on interpretable neural networks and web-based data visualizations.
+    At the core of our analysis, we employ the open-source model MO|DE.behave, which was recently developed at the Institute of Energy and Climate Research - Techno-economic Systems Analysis (IEK-3) at the Forschungszentrum Jülich.
     """)
     
 st.markdown("""
-    At the core of our analysis, we employ the open-source model MO|DE.behave, which was recently developed at the Institute for Energy and Climate Research - Techno-economic Systems Analysis (IEK-3) at the Forschungszentrum Jülich.
-	This model originally stems from the field of behavioral modeling to explore the choice behavior of individuals and groups. 
-	The model's unique feature is that it retains the interpretability of its underlying neural-network structure.
-	Conventional neural networks remain uninterpretable black-boxes due to their inherent complexity. 
-	This makes them great algorithms for applications such as image- or voice-recognition, but limits their capability of delivering insights into the how and why data-inputs and -outputs are causally linked.
-    """)
-    
+    MO|DE.behave was originally developed in the context of behavioral analyses in transportation research. It uses survey data as an input to estimate and simulate choice models and can be applied to a variety of research fields. The model is unique as it enables the estimation of nonparametric mixed logit (MXL) models. These MXL models allow the analysis of heterogenous choice preferences across the surveyed base population, which facilitates the isolation of separate consumer or choice groups.
+            """)
+            
 st.markdown("""
-    MO|DE.behave is a general data analytics tool, which can be applied to any field of analysis, with roots in behavioral analyses.
-    Typical applications include the analysis of survey data to derive behavioral preferences of individuals or groups.\n
-    OCEBRA's services are a great fit, if you plan to conduct a survey and you are now looking for a partner conducting science-based data analytics to gain deeper insights.
+    Work with us, if you’re seeking scientific support in the analysis of choice preferences based on survey data. 
             """)
 
 st.markdown("""---""")
 
-st.markdown("Gain FIRST INSIGHTS already ONLINE:")
+st.markdown("Gain first insights already online:")
 
 #uploading data from local directory
 uploaded_file = st.file_uploader("Upload your survey data as .csv-files", help="Have a look at the -Documentation- page for information on the correct data-format.")
@@ -84,30 +78,20 @@ if uploaded_file is not None:
         
         st.markdown("Which type of analysis do you want to conduct?")
 
-        mnl_model = st.checkbox(
-            "Estimate Multinomial Logit Model", 
-            help = "A multinomial logit model estimates a single, average set of choice preferences for the whole base population."
-            )
-        
-        mxl_model = st.checkbox(
-            "Estimate nonparametric Mixed Logit Model",
-            help = "A nonparametric mixed logit model estimates 1000 preference sets (in this case) and weights them according to their relative importance in the base population."
-            )
-        consumer_groups = st.checkbox(
-            "Identify consumer groups",
-            help = "kmeans clustering is performed upon the mixed logit results to identify more homogeneous consumer/preference groups among the 1000 previously estimated preference sets.")
-
         options = st.multiselect(
             'Which attributes do you want to consider as model parameters?',
             col_names_reduced
             )                
-        
+
+        consumer_groups = st.checkbox(
+            "Identify consumer groups",
+            help = "kmeans clustering is performed upon the mixed logit results to identify more homogeneous consumer/preference groups among the 1000 previously estimated preference sets.")
+
         k_temp = st.number_input(
             'How many preference groups do you want to analyze?',
-            help = "Only relevant for mixed logit models and if consumer groups shall be identified.",
+            help = "Only relevant if consumer groups shall be identified.",
             value=2
             )
-
         
         submit_button = st.form_submit_button(label='Confirm selection')
 
@@ -134,10 +118,7 @@ if uploaded_file is not None:
         param_temp['variable']['fixed'] = param_fixed
         param_temp['variable']['random'] = param_random
         
-        if mxl_model:
-            model_type = "MXL"
-        else:
-            model_type = "MNL"
+        model_type = "MXL"
         
         function_ = Function(
             dataframe, 
@@ -156,48 +137,36 @@ if uploaded_file is not None:
         #Evaluation of MNL- and MXL-model
         text_temp = "LL-Ratio of MNL-model: " + str(LL_MNL)
         st.text(text_temp)
-        if mxl_model:
-            text_temp = "LL-Ratio of MXL-model: " + str(LL_MXL)
-            st.text(text_temp)
+        text_temp = "LL-Ratio of MXL-model: " + str(LL_MXL)
+        st.text(text_temp)
         
         #IDENTIFY CONSUMER GROUPS
         if consumer_groups:
             function_.get_consumer_groups()
                     
         #DOWNLOAD RESULTS
-        if mxl_model:
-            logit_csv, mixed_logit_csv = function_.export_data(model_type = "MXL")
+        logit_csv, mixed_logit_csv = function_.export_data(model_type = "MXL")
+        
+        st.download_button(
+            label="Download MNL-estimates as CSV",
+            data=logit_csv,
+            file_name='MNL_estimates.csv',
+            mime='text/csv'
+            )      
+        
+        st.download_button(
+            label="Download MXL-estimates as CSV",
+            data=mixed_logit_csv,
+            file_name='MXL_estimates.csv',
+            mime='text/csv'
+            )     
+        
+        if consumer_groups:
+            consumer_groups_csv = function_.export_consumer_groups()    
             
             st.download_button(
-                label="Download MNL-estimates as CSV",
-                data=logit_csv,
-                file_name='MNL_estimates.csv',
-                mime='text/csv'
-                )      
-            
-            st.download_button(
-                label="Download MXL-estimates as CSV",
-                data=mixed_logit_csv,
-                file_name='MXL_estimates.csv',
+                label="Download consumer groups as CSV",
+                data=consumer_groups_csv,
+                file_name='consumer_groups.csv',
                 mime='text/csv'
                 )     
-            
-            if consumer_groups:
-                consumer_groups_csv = function_.export_consumer_groups()    
-                
-                st.download_button(
-                    label="Download consumer groups as CSV",
-                    data=consumer_groups_csv,
-                    file_name='consumer_groups.csv',
-                    mime='text/csv'
-                    )     
-            
-        else:
-            logit_csv = function_.export_data(model_type = "MNL")
-            
-            st.download_button(
-                label="Download MNL-estimates as CSV",
-                data=logit_csv,
-                file_name='MNL_estimates.csv',
-                mime='text/csv'
-                )
