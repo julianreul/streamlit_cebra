@@ -20,10 +20,10 @@ add_text = st.sidebar.text(
     "
     )
 
-st.markdown("OCEBRA is a Cologne-based consulting firm specializing in the realm of choice preference analysis.")
+st.markdown("OCEBRA is a Cologne-based data office specializing in the realm of preference analysis.")
       
 st.markdown("""
-    The core of our analysis is the open-source model MO|DE.behave, which was recently developed at the Institute of Energy and Climate Research - Techno-economic Systems Analysis (IEK-3) at the Forschungszentrum Jülich.
+    The core of our analysis is the open-source model MO|DE.behave, which was recently developed at the Forschungszentrum Jülich.
     """)
     
 st.markdown("""
@@ -31,15 +31,15 @@ st.markdown("""
             """)
             
 st.markdown("""
-    Work with us, if you’re seeking scientific support in the analysis of choice preferences based on survey data. 
+    Work with us, if you’re seeking scientific support in the analysis of choice preferences. 
             """)
 
 st.markdown("""---""")
 
-st.markdown("Gain first insights already online:")
+st.markdown("**Use our model online:**")
 
 #uploading data from local directory
-uploaded_file = st.file_uploader("Upload your survey data as .csv-files", help="Have a look at the -Documentation- page for information on the correct data-format.")
+uploaded_file = st.file_uploader("Upload your data in .csv-format", help="Have a look at the -Documentation- page for information on the correct data-format.")
 
 st.markdown("HINT: Have a look at our documentation page for preparing your survey data in the right way.")
 
